@@ -1,0 +1,43 @@
+---
+const FOOTER_LINKS = [
+  { href: '/home', label: 'Home' },
+  { href: '/contact', label: 'Termos e Condições' },
+]
+
+const SOCIAL_LINKS = [
+  { label: 'Instagram', href: 'https://instagram.com' },
+  { label: 'Youtube', href: 'https://youtube.com' },
+  { label: 'LinkedIn', href: 'https://linkedin.com' },
+]
+
+const YEAR = new Date().getFullYear()
+---
+<footer class="bg-[#333545] text-white">
+  <div class="flex items-center max-w-screen-xl mx-auto px-4 h-24">
+    <strong class="text-lg">arara.school</strong>
+
+    <menu class="ml-6">
+      <ul class="flex items-center gap-4">
+        {FOOTER_LINKS.map((item) => (
+          <li class="text-lg">
+            <a href={item.href}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </menu>
+
+    <div class="ml-auto flex items-center gap-4">
+      <span class="text-lg">@{YEAR} Arara School</span>
+
+      <div class="flex items-center gap-4 ml-4">
+        {SOCIAL_LINKS.map((item) => (
+          <a href={item.href}>
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

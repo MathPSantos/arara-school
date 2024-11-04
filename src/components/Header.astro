@@ -1,0 +1,50 @@
+---
+
+import logo from '../assets/logo.svg?raw'
+
+const HEADER_LINKS = [
+  {
+    label: 'Home',
+    href: '/',
+    items: [],
+  },
+  {
+    label: 'Sobre',
+    href: '/#sobre',
+    items: [],
+  },
+  {
+    label: 'Cursos',
+    href: '/#cursos',
+    items: [
+      {
+        label: 'Design Conversacional',
+        href: '/cursos/design-conversacional',
+        items: [],
+      },
+      {
+        label: 'UX Writing e Conteúdos Conversacionais',
+        href: '/cursos/ux-writing-e-conteudos-conversacionais',
+        items: [],
+      },
+    ],
+  }
+]
+---
+<header class="bg-[#167ffc] text-white">
+  <div class="max-w-screen-xl h-20 px-4 mx-auto flex items-center [&>svg]:h-6 [&>svg]:w-auto">
+    <Fragment set:html={logo} />
+
+    <menu class='ml-auto'>
+      <ul class="flex items-center gap-4">
+          {HEADER_LINKS.map((item) => (
+            <li class="text-lg">
+              <a href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+      </ul>
+    </menu>
+  </div>
+</header>
