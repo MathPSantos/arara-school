@@ -1,13 +1,7 @@
 ---
-
-import logo from '../assets/logo.svg?raw'
+import Logo from '../assets/logo.svg'
 
 const HEADER_LINKS = [
-  {
-    label: 'Home',
-    href: '/',
-    items: [],
-  },
   {
     label: 'Sobre',
     href: '/#sobre',
@@ -32,13 +26,15 @@ const HEADER_LINKS = [
 ]
 ---
 <header class="bg-[#167ffc] text-white">
-  <div class="max-w-screen-xl h-20 px-4 mx-auto flex items-center [&>svg]:h-6 [&>svg]:w-auto">
-    <Fragment set:html={logo} />
+  <div class="max-w-screen-xl h-20 px-4 mx-auto flex items-center">
+    <a href="/">
+      <Logo class="h-6 w-auto" />
+    </a>
 
     <menu class='ml-auto'>
       <ul class="flex items-center gap-4">
           {HEADER_LINKS.map((item) => (
-            <li class="text-lg">
+            <li class="text-lg font-medium p-1">
               <a href={item.href}>
                 {item.label}
               </a>

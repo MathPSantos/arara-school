@@ -24,6 +24,13 @@ const CTA_TOPICS = [
 		image: '/icon-4.webp',
 	},
 ]
+
+const FAQ_ITEMS = [
+	{
+		title: '',
+		content: "<p>Just a <strong>decription</strong> </p>"	
+	}
+]
 ---
 
 <Layout title="Arara School">
@@ -40,7 +47,7 @@ const CTA_TOPICS = [
 		</section>
 
 		<!-- CURSOS -->
-		<section>
+		<section id="cursos">
 			<div class="max-w-screen-xl mx-auto px-4 py-12">
 				<h2 class="font-bold text-4xl">Curso online</h2>
 				<p class="text-lg mt-2">Conjunto de cursos com aulas gravadas com muito conteúdo teórico e prático</p>
@@ -59,7 +66,7 @@ const CTA_TOPICS = [
 		</section>
 
 		<!-- TRILHAS -->
-		<section>
+		<section id="trilhas">
 			<div class="max-w-screen-xl mx-auto px-4 py-12">
 				<h2 class="font-bold text-4xl">Trilhas específicas</h2>
 				<p class="text-lg mt-2">Nossas trilhas são ideais para quem procura um conteúdo específico e deseja aprendê-lo com mais rapidez.</p>
@@ -101,7 +108,7 @@ const CTA_TOPICS = [
 		</section>
 
 		<!-- SOBRE -->
-		<section class="bg-[url(/illustration-about.png)] bg-[length:1200px_auto] bg-[top_right_calc(50%-640px-200px)] bg-no-repeat">
+		<section id="sobre" class="bg-[url(/illustration-about.png)] bg-[length:1200px_auto] bg-[top_right_calc(50%-640px-200px)] bg-no-repeat">
 			<div class="max-w-screen-xl mx-auto px-4 py-24" style="--max-w-content:648px">
 				<h2 class="font-bold text-4xl max-w-[--max-w-content]">Construindo um <span class="text-[#167ffc]">ecossistema referência mundial</span> de profissionais e empresas</h2>
 				<p class="max-w-[--max-w-content] text-lg mt-9">Fundada em 2021, a Arara School é feita por pessoas que já estão na missão de educar e transformar profissionais da região há vários anos. Participamos ativamente das comunidades, criamos conteúdos e ajudamos de diferentes formas a evoluir o ecossistema brasileiro.</p>
@@ -136,6 +143,14 @@ const CTA_TOPICS = [
 				<div class="text-center">
 					<h2 class="font-bold text-4xl">FAQ</h2>
 					<p class="text-lg mt-2">Encontre algumas das perguntas frequentes e veja se elas respondem as suas dúvidas.</p>
+					<div class="grid grid-cols-2 gap-4">
+						<!-- {FAQ_ITEMS.map((item) => (
+							// <div class="bg-[#333545] text-white p-6 rounded-lg">
+							// 	<h3 class="font-bold text-2xl">{item.title}</h3>
+							// 	<div class="mt-4" set:html={item.content}></div>
+							// </div>
+						))} -->
+					</div>
 				</div>
 			</div>
 		</section>

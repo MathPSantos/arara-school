@@ -1,13 +1,17 @@
 ---
+import YoutubeIcon from '../assets/youtube-icon.svg'
+import InstagramIcon from '../assets/instagram-icon.svg'
+import LinkedInIcon from '../assets/linkedin-icon.svg'
+
 const FOOTER_LINKS = [
-  { href: '/home', label: 'Home' },
+  { href: '/', label: 'Home' },
   { href: '/contact', label: 'Termos e Condições' },
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Youtube', href: 'https://youtube.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
+  { label: 'Instagram', href: 'https://www.instagram.com/arara.school', Icon: InstagramIcon },
+  { label: 'Youtube', href: 'https://www.youtube.com/channel/UC92dCdbsNZlyA_YTds7HkAw', Icon: YoutubeIcon },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/arara-school/', Icon: LinkedInIcon },
 ]
 
 const YEAR = new Date().getFullYear()
@@ -32,9 +36,9 @@ const YEAR = new Date().getFullYear()
       <span class="text-lg">@{YEAR} Arara School</span>
 
       <div class="flex items-center gap-4 ml-4">
-        {SOCIAL_LINKS.map((item) => (
+        {SOCIAL_LINKS.map(({ Icon, ...item}) => (
           <a href={item.href}>
-            {item.label}
+            <Icon size={24} />
           </a>
         ))}
       </div>
