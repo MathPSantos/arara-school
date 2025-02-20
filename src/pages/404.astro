@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+---
+
+<Layout title="Not Found (404)">
+  <main class="h-full flex flex-col items-center justify-center p-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 flex items-center gap-2">
+      Era aqui mesmo? <span role="img" aria-label="emoji pensativo">🤔</span>
+    </h1>
+    
+    <p class="max-w-screen-md mb-4">
+      A gente também não sabe, mas a página (URL) que você acessou não existe ou não está disponível no momento. 
+      Volta na nossa página inicial (home) e tenta de novo. <span role="img" aria-label="emoji piscando">😉</span>
+    </p>
+    
+    <p class="mb-8">
+      Desculpa qualquer coisa. <span role="img" aria-label="emoji arara">🦜</span>
+    </p>
+    
+    <a 
+      href="/" 
+      class="flex items-center justify-center h-10 px-4 bg-[#6C63FF] hover:bg-[#5B53E8] text-white font-medium rounded-full transition-colors"
+    >
+      IR PARA HOME
+    </a>
+  </main>
+</Layout>
