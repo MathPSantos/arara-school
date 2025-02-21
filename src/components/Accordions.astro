@@ -1,0 +1,70 @@
+---
+interface Props {
+  modules: {
+    title: string;
+    content: string;
+  }[]
+}
+
+const { modules } = Astro.props
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {modules.map((module) => (
+    <div class="bg-white rounded-lg overflow-hidden h-min">
+      <button
+        class="peer w-full px-5 py-4 flex justify-between items-center text-left text-gray-900 hover:bg-gray-50 transition-colors"
+        aria-expanded="false"
+      >
+        <span class="text-lg font-medium">{module.title}</span>
+        <svg 
+          class="w-6 h-6 transform transition-transform duration-200"
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="2"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+      <div 
+        class=" text-gray-600 max-h-0 aria-expanded:max-h-[999999px] aria-expanded:h-auto h-0 transition-all"
+      >
+        <div class="px-5 pb-4 space-y-2" set:html={module.content} />
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  function setupAccordion() {
+    const accordionButtons = document.querySelectorAll('button[aria-expanded]');
+    
+    accordionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        
+        if (!content) return;
+        
+        // Toggle the expanded state
+        button.setAttribute('aria-expanded', String(!isExpanded));
+        content.setAttribute('aria-expanded', String(!isExpanded));
+        
+        // Rotate the icon
+        if (!isExpanded) {
+          icon?.classList.add('rotate-90');
+        } else {
+          icon?.classList.remove('rotate-90');
+        }
+      });
+    });
+  }
+
+  // Setup accordion when the component loads
+  setupAccordion();
+
+  // Setup accordion when the page is partially loaded through Astro
+  document.addEventListener('astro:page-load', setupAccordion);
+</script>

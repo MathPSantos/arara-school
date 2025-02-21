@@ -56,9 +56,9 @@ const FAQ_ITEMS = [
 						<li class="rounded-lg p-6 bg-[--card-background] text-[--card-text] flex flex-col items-stretch gap-6" style={`--card-background:${course.background}; --card-text:${course.text}`}>
 							<div>
 								<h3 class="text-3xl font-bold">{course.title}</h3>
-							<p class="mt-2">{course.description}</p>
+								<p class="mt-2">{course.description}</p>
 							</div>
-							<a href="" class="mt-auto px-4 h-10 rounded-full bg-white text-[#167ffc] font-bold flex items-center w-fit transition-all hover:brightness-90">Me inscrever agora</a>
+							<a href={`/cursos/online/${course.id}`} class="mt-auto px-4 h-10 rounded-full bg-white text-[#167ffc] font-bold flex items-center w-fit transition-all hover:brightness-90">Me inscrever agora</a>
 						</li>
 					))}
 				</ul>

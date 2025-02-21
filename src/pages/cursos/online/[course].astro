@@ -1,0 +1,171 @@
+---
+import Accordions from '../../../components/Accordions.astro';
+import { COURSES } from '../../../config';
+import Layout from '../../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return COURSES.map((course) => ({
+    params: { course: course.id }
+  }));
+}
+
+const { course } = Astro.params
+
+const courseData = COURSES.find((c) => c.id === course);
+
+if (!courseData) return Astro.redirect("/404");
+---
+
+<Layout title={courseData.title}>
+  <!-- Hero Section -->
+  <section class="bg-white pt-56 pb-20 lg:bg-[url(/illustration-hero.png)] bg-no-repeat bg-right-bottom bg-[length:auto_100%]">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <div class="max-w-screen-sm">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">
+          {courseData.title}
+        </h1>
+        <div class="mb-4 space-y-4" set:html={courseData.cta?.description} />
+        <a href="#pricing" style={`--button-bg:${courseData.background}; --button-text:${courseData.text}`} class="bg-[--button-bg] text-[--button-text] h-16 px-10 flex items-center justify-center rounded-full hover:brightness-90 transition-all font-bold text-xl w-fit">
+          Me inscrever agora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Take This Course -->
+  <section class="bg-[#5B53E8] text-white py-20">
+    <div class="max-w-screen-xl mx-auto px-4 flex flex-col md:flex-row  md:items-center gap-10">
+      <div class="">
+        <h2 class="text-4xl font-bold mb-4">Por que fazer o curso?</h2>
+        <div class="space-y-4" set:html={courseData.reasons} />
+      </div>
+
+      <div class="rounded-xl shrink-0 md:w-[360px] bg-white p-6 space-y-4">
+        <strong class="block text-3xl font-bold text-[#1c2838]">Parcele em 12x de <br> <span class="text-[#595bd4]">{courseData.price?.installment}</span></strong>
+        <a href="#pricing" class="bg-[#5B53E8] text-white h-11 px-6 flex items-center justify-center rounded-full hover:brightness-90 transition-all font-bold text-lg w-fit">
+          Me inscrever agora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Topics -->
+  <section class="py-28 bg-[#167ffc] text-white">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4">O que você vai aprender?</h2>
+      <p class="text-lg">
+        O curso é dividido em módulos e cada módulo é facilitado por uma pessoa especialista.
+      </p>
+      <p class="text-lg mb-8">
+        As aulas são gravadas e editadas para facilitar a sua jornada de aprendizado.
+      </p>
+
+      <Accordions modules={courseData.learning ?? []} />
+    </div>
+  </section>
+
+  <!-- Instructors -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-screen-xl mx-auto px-4 py-28">
+      <h2 class="text-4xl font-bold mb-2 text-center">Quem vai te ajudar a aprender?</h2>
+      <p class="text-lg text-center mb-10">Aprenda com profissionais que tem experiência no mercado em diferentes áreas.&nbsp;</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        {courseData.team?.map((instructor) => (
+          <div class="text-center flex flex-col items-center bg-white shadow-md p-6">
+            <a href={instructor.linkedin} target="_blank" rel="noopener noreferrer">
+              <img
+                src={instructor.image || "/placeholder.svg"}
+                alt={instructor.name}
+                class="size-32 rounded-full mb-4 border-4 border-[#167ffc]"
+              />
+            </a>
+            <h3 class="font-medium text-2xl mb-1">{instructor.name}</h3>
+            <p class="text-sm">{instructor.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="py-28 bg-gray-50">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">
+        Todas as habilidades e conhecimentos que você precisa
+      </h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {courseData.skills?.items.map((skill) => (
+          <div class="text-center flex flex-col items-center ">
+            <img src={skill.image} alt="" class="size-20 mb-4" />
+            <h3 class="font-medium mb-2">{skill.title}</h3>
+            <p class="text-gray-600">{skill.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 bg-gray-50">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <div class="max-w-[820px] mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center">
+          Transforme suas habilidades agora!
+        </h2>
+        <p class="text-center">
+          Oferecemos outras opções de pagamento e um desconto adicional de 5% para pagamentos à vista como depósitos bancários, transferência pix ou boleto. Preencha <a href="" target="_blank" rel="noopener" class="underline text-[#167ffc]">este formulário</a> ou envie um e-mail para o contato@arara.school.
+        </p>
+        <strong class="font-medium text-center mt-3 mb-8 block">
+          Aprenda novas habilidades e aprimore seus conhecimentos!
+        </strong>
+      </div>
+      <div class="max-w-md mx-auto">
+        <div class="bg-white rounded-sm shadow-lg p-8">
+          <div class="text-center mb-8">
+            <strong class="block font-bold text-2xl mb-2 text-[#595bd4]">Recomendado</strong>
+            <p class="text-4xl font-bold mb-2">Parcele em até 12x</p>
+            <span class="block text-sm font-bold">Pagamento no cartão e garantia de 7 dias</span>
+            <!-- <p class="text-gray-600">ou {courseData.price?.full}</p> -->
+          </div>
+
+          <ul class="check-list mb-6 space-y-2 pl-8">
+            <li>Acesso por 12 meses</li>
+            <li>Acesso ao conteúdo 24h / 7 dias</li>
+            <li>Mais de 15 horas de vídeos aula</li>
+            <li>Exercícios em todos os módulos para você praticar</li>
+            <li>Todos os slides das aulas e materiais extras disponibilizados por especialistas</li>
+            <li>Certificado digital (com aprovação acima de 70% na prova final)</li>
+            <li>Acesso a comunidade do curso</li>
+          </ul>
+          
+          <p class="text-4xl font-bold text-center mb-6">12x de <span class="text-[#595bd4]">{courseData.price?.installment}</span></p>
+
+          <button class="w-full h-11 bg-blue-500 text-white font-bold text-lg rounded-full hover:bg-blue-600 transition-colors">
+            Matricular-se
+          </button>
+        </div>
+      </div>
+      <div class="bg-white shadow-lg mt-6 p-7 rounded-sm text-center">
+        <h4 class="font-bold text-2xl">Quer levar nossos cursos para a sua empresa ou seu time? </h4>
+        <p>Escreva um email para <a href="mailto:contato@arara.school" class="underline text-[#595bd4] font-semibold  ">contato@arara.school</a></p>
+      </div>
+      <p class="mt-4 italic">* Enquanto curso estiver em produção, vamos oferecer um desconto de 10% de pré-venda aplicado diretamente no preço.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-28 bg-[#3cabdb] text-white">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-8 text-center">Perguntas frequentes sobre o curso</h2>
+      <Accordions modules={courseData.faq ?? []} />
+    </div>
+  </section>
+</Layout>
+
+<style scoped>
+  .check-list li::before {
+    content: "✔️";
+    float: left;
+    margin-left: -28px;
+  }
+</style>
